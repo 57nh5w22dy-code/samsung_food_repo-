@@ -4,22 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{RECIPE_DESCRIPTION}}">
+  <meta name="theme-color" content="#f5f5f7">
+
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{RECIPE_NAME}}">
+  <meta property="og:title" content="{{RECIPE_TITLE}}">
   <meta property="og:description" content="{{RECIPE_DESCRIPTION}}">
+  <meta property="og:url" content="{{PAGE_URL}}">
+  <!-- Remove this tag when no public HTTPS image is available. -->
   <meta property="og:image" content="{{IMAGE_URL}}">
-  <title>{{RECIPE_NAME}}</title>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{RECIPE_TITLE}}">
+  <meta name="twitter:description" content="{{RECIPE_DESCRIPTION}}">
+  <!-- Remove this tag when no public HTTPS image is available. -->
+  <meta name="twitter:image" content="{{IMAGE_URL}}">
+
+  <title>{{RECIPE_TITLE}}</title>
+
   <style>
     :root {
       color-scheme: light;
-      --background: #f5f5f7;
-      --surface: rgba(255, 255, 255, 0.92);
+      --page: #f5f5f7;
+      --card: #ffffff;
       --text: #1d1d1f;
       --muted: #6e6e73;
-      --accent: #2f6f4e;
-      --line: rgba(29, 29, 31, 0.1);
+      --accent: #2d6a4f;
+      --border: rgba(29, 29, 31, 0.1);
       --radius: 1.5rem;
-      --shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.08);
+      --shadow: 0 1rem 3rem rgba(0, 0, 0, 0.07);
     }
 
     * { box-sizing: border-box; }
@@ -28,44 +40,46 @@
 
     body {
       margin: 0;
-      background: var(--background);
+      background: var(--page);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       font-size: 1rem;
-      line-height: 1.55;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
     img {
       display: block;
-      width: 100%;
-      height: auto;
+      max-width: 100%;
     }
 
     main {
-      width: min(100% - 1.5rem, 72rem);
+      width: min(calc(100% - 1.5rem), 72rem);
       margin: 0 auto;
       padding: 0.75rem 0 3rem;
     }
 
-    .hero,
+    .recipe-header,
     .card {
-      overflow: hidden;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      background: var(--surface);
+      background: var(--card);
       box-shadow: var(--shadow);
     }
 
+    .recipe-header { overflow: hidden; }
+
     .hero-image {
+      width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
+      background: #e8e8ed;
     }
 
-    .hero-copy { padding: 1.5rem; }
+    .header-content { padding: 1.5rem; }
 
-    .eyebrow {
-      margin: 0 0 0.5rem;
+    .category {
+      margin: 0 0 0.45rem;
       color: var(--accent);
       font-size: 0.78rem;
       font-weight: 700;
@@ -78,43 +92,44 @@
       margin: 0;
       font-size: clamp(2.25rem, 9vw, 4.75rem);
       letter-spacing: -0.045em;
-      line-height: 0.98;
+      line-height: 1;
     }
 
     .description {
-      max-width: 44rem;
+      max-width: 46rem;
       margin: 1rem 0 0;
       color: var(--muted);
       font-size: 1.08rem;
     }
 
-    .facts {
+    .metadata {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.75rem;
-      margin-top: 1.5rem;
+      margin: 1.5rem 0 0;
     }
 
-    .fact {
-      padding: 0.85rem 1rem;
+    .metadata div {
+      min-height: 4.5rem;
+      padding: 0.8rem 1rem;
       border-radius: 1rem;
-      background: var(--background);
+      background: var(--page);
     }
 
-    .fact dt {
+    .metadata dt {
       color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 650;
+      font-size: 0.74rem;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .fact dd {
-      margin: 0.15rem 0 0;
+    .metadata dd {
+      margin: 0.2rem 0 0;
       font-weight: 650;
     }
 
-    .content {
+    .recipe-grid {
       display: grid;
       gap: 1rem;
       margin-top: 1rem;
@@ -126,26 +141,25 @@
       margin: 0 0 1rem;
       font-size: 1.55rem;
       letter-spacing: -0.025em;
+      line-height: 1.15;
     }
 
     ul,
     ol {
       margin: 0;
-      padding-left: 1.3rem;
+      padding-left: 1.35rem;
     }
 
-    li + li { margin-top: 0.8rem; }
+    li { padding-left: 0.2rem; }
+    li + li { margin-top: 0.85rem; }
 
-    .steps { counter-reset: recipe-step; }
-
-    .steps li::marker {
+    .instructions li::marker {
       color: var(--accent);
       font-weight: 750;
     }
 
-    .notes p { margin: 0; }
-
-    .notes p + p { margin-top: 0.75rem; }
+    .optional-content > *:first-child { margin-top: 0; }
+    .optional-content > *:last-child { margin-bottom: 0; }
 
     footer {
       padding: 1.5rem 0 0;
@@ -156,51 +170,64 @@
 
     @media (min-width: 48rem) {
       main { padding-top: 2rem; }
-      .hero { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); }
-      .hero-image { height: 100%; aspect-ratio: auto; }
-      .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 3rem; }
-      .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .content { grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr); }
+
+      .recipe-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+      }
+
+      .hero-image {
+        height: 100%;
+        min-height: 32rem;
+        aspect-ratio: auto;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3rem;
+      }
+
+      .metadata { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+      .recipe-grid {
+        grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+      }
+
       .card { padding: 2rem; }
-      .notes { grid-column: 1 / -1; }
+      .full-width { grid-column: 1 / -1; }
     }
 
     @media print {
       body { background: #fff; }
       main { width: 100%; padding: 0; }
-      .hero, .card { box-shadow: none; break-inside: avoid; }
+      .recipe-header, .card { box-shadow: none; break-inside: avoid; }
+      .hero-image { max-height: 20rem; }
     }
   </style>
+
+  <!-- Insert JSON-LD ingredient strings and HowToStep objects in the arrays below. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Recipe",
-    "name": "{{RECIPE_NAME}}",
+    "name": "{{RECIPE_TITLE}}",
     "description": "{{RECIPE_DESCRIPTION}}",
     "image": ["{{IMAGE_URL}}"],
-    "datePublished": "{{DATE_PUBLISHED_YYYY_MM_DD}}",
-    "prepTime": "{{PREP_TIME_ISO_8601}}",
-    "cookTime": "{{COOK_TIME_ISO_8601}}",
-    "totalTime": "{{TOTAL_TIME_ISO_8601}}",
-    "recipeYield": "{{RECIPE_YIELD}}",
+    "datePublished": "{{DATE_PUBLISHED}}",
+    "prepTime": "{{PREP_TIME_ISO}}",
+    "cookTime": "{{COOK_TIME_ISO}}",
+    "totalTime": "{{TOTAL_TIME_ISO}}",
+    "recipeYield": "{{SERVINGS}}",
     "recipeCategory": "{{RECIPE_CATEGORY}}",
     "recipeCuisine": "{{RECIPE_CUISINE}}",
-    "keywords": "{{COMMA_SEPARATED_KEYWORDS}}",
+    "keywords": "{{KEYWORDS}}",
     "recipeIngredient": [
-      "{{INGREDIENT_1}}",
-      "{{INGREDIENT_2}}"
+      {{JSON_LD_INGREDIENTS}}
     ],
     "recipeInstructions": [
-      {
-        "@type": "HowToStep",
-        "name": "{{STEP_1_NAME}}",
-        "text": "{{STEP_1_TEXT}}"
-      },
-      {
-        "@type": "HowToStep",
-        "name": "{{STEP_2_NAME}}",
-        "text": "{{STEP_2_TEXT}}"
-      }
+      {{JSON_LD_INSTRUCTIONS}}
     ]
   }
   </script>
@@ -208,47 +235,60 @@
 <body>
   <main>
     <article>
-      <header class="hero">
-        <!-- Remove the image and its metadata when no public HTTPS image is available. -->
-        <img class="hero-image" src="{{IMAGE_URL}}" alt="{{IMAGE_ALT_TEXT}}" width="1200" height="900">
-        <div class="hero-copy">
-          <p class="eyebrow">{{RECIPE_CATEGORY}}</p>
-          <h1>{{RECIPE_NAME}}</h1>
+      <header class="recipe-header">
+        <!-- Remove this hero image block when no public HTTPS image is available. -->
+        <img class="hero-image" src="{{IMAGE_URL}}" alt="{{IMAGE_ALT}}" width="1200" height="900">
+
+        <div class="header-content">
+          <p class="category">{{RECIPE_CATEGORY}}</p>
+          <h1>{{RECIPE_TITLE}}</h1>
           <p class="description">{{RECIPE_DESCRIPTION}}</p>
-          <dl class="facts">
-            <div class="fact"><dt>Serves</dt><dd>{{RECIPE_YIELD}}</dd></div>
-            <div class="fact"><dt>Prep</dt><dd>{{PREP_TIME_VISIBLE}}</dd></div>
-            <div class="fact"><dt>Cook</dt><dd>{{COOK_TIME_VISIBLE}}</dd></div>
-            <div class="fact"><dt>Total</dt><dd>{{TOTAL_TIME_VISIBLE}}</dd></div>
+
+          <dl class="metadata">
+            <div><dt>Prep</dt><dd>{{PREP_TIME_VISIBLE}}</dd></div>
+            <div><dt>Cook</dt><dd>{{COOK_TIME_VISIBLE}}</dd></div>
+            <div><dt>Total</dt><dd>{{TOTAL_TIME_VISIBLE}}</dd></div>
+            <div><dt>Servings</dt><dd>{{SERVINGS}}</dd></div>
           </dl>
         </div>
       </header>
 
-      <div class="content">
+      <div class="recipe-grid">
         <section class="card" aria-labelledby="ingredients-heading">
           <h2 id="ingredients-heading">Ingredients</h2>
+          <!-- Insert ingredient list items here. -->
           <ul>
-            <li>{{INGREDIENT_1}}</li>
-            <li>{{INGREDIENT_2}}</li>
+            {{INGREDIENTS_HTML}}
           </ul>
         </section>
 
         <section class="card" aria-labelledby="instructions-heading">
           <h2 id="instructions-heading">Instructions</h2>
-          <ol class="steps">
-            <li><strong>{{STEP_1_NAME}}.</strong> {{STEP_1_TEXT}}</li>
-            <li><strong>{{STEP_2_NAME}}.</strong> {{STEP_2_TEXT}}</li>
+          <!-- Insert ordered instruction list items here. -->
+          <ol class="instructions">
+            {{INSTRUCTIONS_HTML}}
           </ol>
         </section>
 
-        <section class="card notes" aria-labelledby="notes-heading">
-          <h2 id="notes-heading">Storage &amp; reheating</h2>
-          <p><strong>Storage:</strong> {{STORAGE_NOTES}}</p>
-          <p><strong>Reheating:</strong> {{REHEATING_NOTES}}</p>
+        <!-- Remove any unused optional section below. -->
+        <section class="card full-width optional-content" aria-labelledby="notes-heading">
+          <h2 id="notes-heading">Notes</h2>
+          {{NOTES_HTML}}
+        </section>
+
+        <section class="card optional-content" aria-labelledby="storage-heading">
+          <h2 id="storage-heading">Storage</h2>
+          {{STORAGE_HTML}}
+        </section>
+
+        <section class="card optional-content" aria-labelledby="reheating-heading">
+          <h2 id="reheating-heading">Reheating</h2>
+          {{REHEATING_HTML}}
         </section>
       </div>
     </article>
-    <footer>Published {{DATE_PUBLISHED_VISIBLE}}</footer>
+
+    <footer>Published {{DATE_PUBLISHED}}</footer>
   </main>
 </body>
 </html>
