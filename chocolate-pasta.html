@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Silky chocolate pasta coated in a glossy dark chocolate sauce with just the right touch of sweetness.">
+  <meta name="theme-color" content="#f5f5f7">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Chocolate Pasta">
+  <meta property="og:description" content="Silky chocolate pasta coated in a glossy dark chocolate sauce with just the right touch of sweetness.">
+  <meta property="og:url" content="https://57nh5w22dy-code.github.io/samsung_food_repo-/chocolate-pasta.html">
+  <meta property="og:image" content="https://57nh5w22dy-code.github.io/samsung_food_repo-/images/chocolate-pasta.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chocolate Pasta">
+  <meta name="twitter:description" content="Silky chocolate pasta coated in a glossy dark chocolate sauce with just the right touch of sweetness.">
+  <meta name="twitter:image" content="https://57nh5w22dy-code.github.io/samsung_food_repo-/images/chocolate-pasta.jpg">
+
+  <title>Chocolate Pasta</title>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --accent: #713b21;
+      --border: rgba(80, 42, 24, 0.12);
+      --radius: 1.5rem;
+      --shadow: 0 1rem 3rem rgba(47, 24, 13, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    main {
+      width: min(calc(100% - 1.5rem), 72rem);
+      margin: 0 auto;
+      padding: 0.75rem 0 3rem;
+    }
+
+    .recipe-header,
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .recipe-header { overflow: hidden; }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      background: #eee9e5;
+    }
+
+    .header-content { padding: 1.5rem; }
+
+    .category {
+      margin: 0 0 0.45rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 18ch;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 11vw, 5rem);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 0.96;
+    }
+
+    .description {
+      max-width: 46rem;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .metadata {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0 0;
+    }
+
+    .metadata div {
+      min-height: 4.5rem;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      background: var(--page);
+    }
+
+    .metadata dt {
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .metadata dd {
+      margin: 0.2rem 0 0;
+      font-weight: 650;
+    }
+
+    .recipe-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card { padding: 1.5rem; }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.55rem;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    h3 {
+      margin: 1.5rem 0 0.75rem;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding-left: 1.35rem;
+    }
+
+    li { padding-left: 0.2rem; }
+    li + li { margin-top: 0.85rem; }
+
+    .instructions li::marker {
+      color: var(--accent);
+      font-weight: 750;
+    }
+
+    .notes-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .notes-grid section + section {
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .notes-grid h3 { margin-top: 0; }
+    .notes-grid p { margin: 0; }
+
+    footer {
+      padding: 1.5rem 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (min-width: 48rem) {
+      main { padding-top: 2rem; }
+
+      .recipe-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+
+      .hero-image {
+        height: 100%;
+        min-height: 36rem;
+        aspect-ratio: auto;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3rem;
+      }
+
+      .metadata { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+      .recipe-grid {
+        grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+      }
+
+      .card { padding: 2rem; }
+      .full-width { grid-column: 1 / -1; }
+      .notes-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .notes-grid section + section {
+        padding-top: 0;
+        padding-left: 1.25rem;
+        border-top: 0;
+        border-left: 1px solid var(--border);
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; padding: 0; }
+      .recipe-header, .card { box-shadow: none; break-inside: avoid; }
+      .hero-image { max-height: 24rem; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Chocolate Pasta",
+    "description": "Silky chocolate pasta coated in a glossy dark chocolate sauce with just the right touch of sweetness.",
+    "image": ["https://57nh5w22dy-code.github.io/samsung_food_repo-/images/chocolate-pasta.jpg"],
+    "datePublished": "2026-08-06",
+    "prepTime": "PT10M",
+    "cookTime": "PT10M",
+    "totalTime": "PT20M",
+    "recipeYield": "2 servings",
+    "recipeCategory": "Dessert",
+    "recipeCuisine": "Italian-inspired",
+    "keywords": "chocolate pasta, dark chocolate, quick dessert, vegetarian",
+    "recipeIngredient": [
+      "200 g dry chocolate pasta",
+      "100 g dark chocolate (60–70%), chopped",
+      "¼ cup (60 mL) 2% lactose-free milk",
+      "1 tbsp unsalted butter",
+      "Pinch of fine salt",
+      "½ tsp vanilla extract (optional)",
+      "Fresh raspberries or strawberries (optional)",
+      "Toasted hazelnuts or walnuts (optional)",
+      "Grated dark chocolate (optional)",
+      "Powdered sugar (optional)",
+      "Flaky sea salt (optional)",
+      "Vanilla ice cream (optional)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Cook the pasta",
+        "text": "Cook the chocolate pasta according to package instructions until al dente. Reserve 2–3 tbsp pasta water, then drain."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Melt the chocolate",
+        "text": "Place the chopped chocolate in a microwave-safe bowl. Melt using the microwave’s Chocolate Melt setting or 50% power in 20-second bursts, stirring until smooth."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Heat the milk",
+        "text": "Heat the milk in a separate microwave-safe cup until hot and steaming, about 30–45 seconds. Do not let it boil."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Make the sauce",
+        "text": "Slowly whisk the hot milk into the melted chocolate in 2–3 additions until smooth and glossy."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Finish the sauce",
+        "text": "Stir in the butter, salt, and vanilla until fully combined."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Coat the pasta",
+        "text": "Add the warm pasta and toss gently to coat. Use only enough sauce to lightly coat the pasta."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Adjust the consistency",
+        "text": "If the sauce is too thick, add warm milk or reserved pasta water, 1 tsp at a time, until silky."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Serve",
+        "text": "Twirl into bowls and add any desired optional toppings. Serve immediately."
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <main>
+    <article>
+      <header class="recipe-header">
+        <img class="hero-image" src="https://57nh5w22dy-code.github.io/samsung_food_repo-/images/chocolate-pasta.jpg" alt="Chocolate pasta with dark chocolate sauce and raspberries" width="768" height="1152">
+
+        <div class="header-content">
+          <p class="category">Dessert · Italian-inspired</p>
+          <h1>Chocolate Pasta</h1>
+          <p class="description">Silky chocolate pasta coated in a glossy dark chocolate sauce with just the right touch of sweetness.</p>
+
+          <dl class="metadata">
+            <div><dt>Prep</dt><dd>10 minutes</dd></div>
+            <div><dt>Cook</dt><dd>10 minutes</dd></div>
+            <div><dt>Total</dt><dd>20 minutes</dd></div>
+            <div><dt>Servings</dt><dd>2 servings</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <div class="recipe-grid">
+        <section class="card" aria-labelledby="ingredients-heading">
+          <h2 id="ingredients-heading">Ingredients</h2>
+          <ul>
+            <li>200 g dry chocolate pasta</li>
+            <li>100 g dark chocolate (60–70%), chopped</li>
+            <li>¼ cup (60 mL) 2% lactose-free milk</li>
+            <li>1 tbsp unsalted butter</li>
+            <li>Pinch of fine salt</li>
+            <li>½ tsp vanilla extract (optional)</li>
+          </ul>
+
+          <h3>Optional toppings</h3>
+          <ul>
+            <li>Fresh raspberries or strawberries (optional)</li>
+            <li>Toasted hazelnuts or walnuts (optional)</li>
+            <li>Grated dark chocolate (optional)</li>
+            <li>Powdered sugar (optional)</li>
+            <li>Flaky sea salt (optional)</li>
+            <li>Vanilla ice cream (optional)</li>
+          </ul>
+        </section>
+
+        <section class="card" aria-labelledby="instructions-heading">
+          <h2 id="instructions-heading">Instructions</h2>
+          <ol class="instructions">
+            <li><strong>Cook the pasta.</strong> Cook the chocolate pasta according to package instructions until al dente. Reserve 2–3 tbsp pasta water, then drain.</li>
+            <li><strong>Melt the chocolate.</strong> Place the chopped chocolate in a microwave-safe bowl. Melt using the microwave’s Chocolate Melt setting or 50% power in 20-second bursts, stirring until smooth.</li>
+            <li><strong>Heat the milk.</strong> Heat the milk in a separate microwave-safe cup until hot and steaming, about 30–45 seconds. Do not let it boil.</li>
+            <li><strong>Make the sauce.</strong> Slowly whisk the hot milk into the melted chocolate in 2–3 additions until smooth and glossy.</li>
+            <li><strong>Finish the sauce.</strong> Stir in the butter, salt, and vanilla until fully combined.</li>
+            <li><strong>Coat the pasta.</strong> Add the warm pasta and toss gently to coat. Use only enough sauce to lightly coat the pasta.</li>
+            <li><strong>Adjust the consistency.</strong> If the sauce is too thick, add warm milk or reserved pasta water, 1 tsp at a time, until silky.</li>
+            <li><strong>Serve.</strong> Twirl into bowls and add any desired optional toppings. Serve immediately.</li>
+          </ol>
+        </section>
+
+        <aside class="card full-width notes-grid" aria-label="Recipe notes">
+          <section>
+            <h3>Chef’s tip</h3>
+            <p>Keep the sauce light so the pasta stays glossy—add liquid gradually. It should coat, not pool.</p>
+          </section>
+          <section>
+            <h3>Make-ahead</h3>
+            <p>Best enjoyed fresh. You can cook the pasta and make the sauce ahead; reheat gently with a splash of milk.</p>
+          </section>
+          <section>
+            <h3>Storage &amp; reheating</h3>
+            <p>Store leftovers in an airtight container in the refrigerator for up to 2 days. Reheat gently with a splash of milk.</p>
+          </section>
+        </aside>
+      </div>
+    </article>
+
+    <footer>Published August 6, 2026</footer>
+  </main>
+</body>
+</html>
